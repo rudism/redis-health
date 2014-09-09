@@ -1,14 +1,14 @@
 app = (require 'express')()
 
 app.get '/health', (req, res) ->
-  client = (require 'redis').createClient 6379, '192.168.42.101'
+  client = (require 'redis').createClient()
   client.on 'connect', ->
     client.info (err, replay) ->
       info = (require 'redis-info').parse replay
       if info.fields.role == 'master'
-        res.status(200).end()
+        res.status(200).send('master').end()
       else
-        res.status(409).end()
+        res.status(409).send('slave').end()
       client.quit()
 
 server = app.listen 3000, ->
