@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "~4.9.0",
+    "redis": "~0.12.1",
+    "redis-info": "~2.0.2"
+  }
+}
