@@ -10,6 +10,8 @@ app.get '/health', (req, res) ->
       else
         res.status(409).send('slave').end()
       client.quit()
+  client.on 'error', (err) ->
+    res.status(500).end()
 
 server = app.listen 3000, ->
   console.log "listening on port #{server.address().port}"
